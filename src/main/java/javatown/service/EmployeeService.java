@@ -1,13 +1,7 @@
 package javatown.service;
 
-import javatown.DTO.BookFormDTO;
-import javatown.DTO.CDFormDTO;
-import javatown.DTO.DVDFormDTO;
-import javatown.DTO.EmployeeFormDTO;
-import javatown.modele.Book;
-import javatown.modele.CD;
-import javatown.modele.DVD;
-import javatown.modele.Employee;
+import javatown.DTO.*;
+import javatown.modele.*;
 import javatown.repository.*;
 
 public class EmployeeService extends AbstractCommunService{
@@ -54,5 +48,35 @@ public class EmployeeService extends AbstractCommunService{
     public DVDFormDTO createDVD(DVD dvd) {
         documentRepository.save(dvd);
         return new DVDFormDTO(dvd);
+    }
+
+    public LoanFormDTO createLoan(CreateLoanFormDTO dto) {
+        return createLoan(dto.getClientId(), dto.getDocumentId(), dto.getDateOfLoan());
+    }
+    public LoanFormDTO createLoan(String clientId, String documentId, String dateOfLoan) {
+        long documentIndex = Long.parseLong(documentId);
+        long clientIndex = Long.parseLong(clientId);
+        var documentOpt = documentRepository.findByIdWithLoans(documentIndex);
+        Client client = findClientByIdWithLoans(clientIndex);
+        if(documentOpt.isEmpty() || client == null)
+            return null;
+
+        var document = documentOpt.get();
+
+        if(!debtRepository.existsByClient_Id(clientIndex) && document.canBeLoan()){
+            Loan loan = saveLoan(client, document, dateOfLoan);
+            return new LoanFormDTO(loan);
+        }
+        return null;
+    }
+
+    private Loan saveLoan(Client client, AbstractDocument document, String dateOfLoan){
+        Loan loan = new Loan(client, document, dateOfLoan);
+        client.addLoan(loan);
+
+        loanRepository.save(loan);
+        clientRepository.save(client);
+
+        return loan;
     }
 }
