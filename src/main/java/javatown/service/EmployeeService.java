@@ -116,4 +116,14 @@ public class EmployeeService extends AbstractCommunService{
 
         return new DebtFormDTO(debt);
     }
+
+    public void addExemplaires(String documentId, int nb) {
+        long id = Long.parseLong(documentId);
+        var documentOpt = documentRepository.findByIdWithLoans(id);
+        if(documentOpt.isEmpty())
+            return;
+        AbstractDocument document = documentOpt.get();
+        document.addExempliares(nb);
+        documentRepository.save(document);
+    }
 }
