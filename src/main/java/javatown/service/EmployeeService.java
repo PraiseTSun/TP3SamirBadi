@@ -2,9 +2,11 @@ package javatown.service;
 
 import javatown.DTO.BookFormDTO;
 import javatown.DTO.CDFormDTO;
+import javatown.DTO.DVDFormDTO;
 import javatown.DTO.EmployeeFormDTO;
 import javatown.modele.Book;
 import javatown.modele.CD;
+import javatown.modele.DVD;
 import javatown.modele.Employee;
 import javatown.repository.*;
 
@@ -43,5 +45,14 @@ public class EmployeeService extends AbstractCommunService{
     public CDFormDTO createCD(CD cd) {
         documentRepository.save(cd);
         return new CDFormDTO(cd);
+    }
+
+    public DVDFormDTO createDVD(String title, String author, String editor, String publicationYear, String genre) {
+        return createDVD(new DVD(title, author, editor, publicationYear, genre));
+    }
+
+    public DVDFormDTO createDVD(DVD dvd) {
+        documentRepository.save(dvd);
+        return new DVDFormDTO(dvd);
     }
 }
