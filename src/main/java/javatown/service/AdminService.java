@@ -1,8 +1,10 @@
 package javatown.service;
 
 import javatown.DTO.AdminFormDTO;
+import javatown.DTO.DebtFormDTO;
 import javatown.DTO.LoanFormDTO;
 import javatown.modele.Administrator;
+import javatown.modele.Debt;
 import javatown.modele.Loan;
 import javatown.repository.AdminRepository;
 import javatown.repository.ClientRepository;
@@ -39,6 +41,17 @@ public class AdminService extends AbstractCommunService{
         }
 
         return loansDTO;
+    }
+
+    public List<DebtFormDTO> getDebtsOfMonth(int month) {
+        var debtsOpt = debtRepository.findAllByDateOfDebt(month);
+        List<Debt> debts = getListOfMonth(debtsOpt);
+        List<DebtFormDTO> debtsDTO = new ArrayList<>();
+        for (Debt debt : debts) {
+            debtsDTO.add(new DebtFormDTO(debt));
+        }
+
+        return debtsDTO;
     }
 
     private <T> List<T> getListOfMonth(Optional<List<T>> listOpt){
