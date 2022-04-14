@@ -16,4 +16,6 @@ public interface DocumentRepository extends JpaRepository<AbstractDocument, Long
     Optional<List<AbstractDocument>> findAllByAuthor(String author);
     Optional<List<AbstractDocument>> findAllByEditor(String editor);
     Optional<List<AbstractDocument>> findAllByPublicationYear(Year year);
+    Optional<List<AbstractDocument>> findAllByGenre(String genre);
+
 }
