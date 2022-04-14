@@ -1,12 +1,16 @@
 package javatown.service;
 
-import javatown.DTO.ClientFormDTO;
-import javatown.modele.Client;
+import javatown.DTO.*;
+import javatown.modele.*;
 import javatown.repository.ClientRepository;
 import javatown.repository.DebtRepository;
 import javatown.repository.DocumentRepository;
 import javatown.repository.LoanRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ClientService extends AbstractCommunService{
@@ -39,5 +43,28 @@ public class ClientService extends AbstractCommunService{
     public ClientFormDTO getClientByPassword(String firstName, String lastName, String password) {
         Client client = findCLientWithLoansAndDebts(firstName, lastName, password);
         return new ClientFormDTO(client);
+    }
+
+    public List<AbstractDocumentFormDTO> getDocumentsByAuthor(String author) {
+        var documentsOpt = documentRepository.findAllByAuthor(author);
+        return getDocumentsDTO(documentsOpt);
+    }
+
+    private List<AbstractDocumentFormDTO> getDocumentsDTO(Optional<List<AbstractDocument>> documentsOpt){
+        List<AbstractDocument> documents = handleOptDocuments(documentsOpt);
+        List<AbstractDocumentFormDTO> documentsDTO = new ArrayList<>();
+        for (AbstractDocument document: documents) {
+            if(document.getClass() == Book.class) documentsDTO.add(new BookFormDTO((Book) document));
+            else if(document.getClass() == CD.class) documentsDTO.add(new CDFormDTO((CD) document));
+            else if(document.getClass() == DVD.class) documentsDTO.add(new DVDFormDTO((DVD) document));
+        }
+
+        return documentsDTO;
+    }
+
+    private List<AbstractDocument> handleOptDocuments(Optional<List<AbstractDocument>> documentsOpt){
+        if(documentsOpt.isEmpty()) return null;
+        List<AbstractDocument> documents = documentsOpt.get();
+        return documents;
     }
 }
