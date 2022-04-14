@@ -62,6 +62,11 @@ public class ClientService extends AbstractCommunService{
         return getDocumentsDTO(documentsOpt);
     }
 
+    public List<AbstractDocumentFormDTO> getDocumentsByGenre(String genre) {
+        var documentsOpt = documentRepository.findAllByGenre(genre);
+        return getDocumentsDTO(documentsOpt);
+    }
+
     private List<AbstractDocumentFormDTO> getDocumentsDTO(Optional<List<AbstractDocument>> documentsOpt){
         List<AbstractDocument> documents = handleOptDocuments(documentsOpt);
         List<AbstractDocumentFormDTO> documentsDTO = new ArrayList<>();
