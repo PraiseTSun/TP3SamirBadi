@@ -16,6 +16,24 @@ public class AbstractCommunService {
         this.debtRepository = debtRepository;
     }
 
+    protected Client findCLientWithLoansAndDebts(long clientId){
+        var clientLoans = findClientByIdWithLoans(clientId);
+        var clientDebts = findClientByIdWithDebts(clientId);
+        if(clientLoans == null || clientDebts == null)
+            return null;
+        clientLoans.setDebts(clientDebts.getDebts());
+        return clientLoans;
+    }
+
+    protected Client findCLientWithLoansAndDebts(String firstName, String lastName, String password){
+        var clientLoans = findClientByPasswordWithLoans(firstName, lastName, password);
+        var clientDebts = findClientByPasswordWithDebts(firstName, lastName, password);
+        if(clientLoans == null || clientDebts == null)
+            return null;
+        clientLoans.setDebts(clientDebts.getDebts());
+        return clientLoans;
+    }
+
     protected Client findClientByIdWithLoans(long clientId){
         var clientOpt = clientRepository.findByIdWithLoans(clientId);
         if(clientOpt.isEmpty())
