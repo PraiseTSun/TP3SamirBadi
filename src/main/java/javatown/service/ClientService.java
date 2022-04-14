@@ -8,6 +8,7 @@ import javatown.repository.DocumentRepository;
 import javatown.repository.LoanRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +53,12 @@ public class ClientService extends AbstractCommunService{
 
     public List<AbstractDocumentFormDTO> getDocumentsByEditor(String editor) {
         var documentsOpt = documentRepository.findAllByEditor(editor);
+        return getDocumentsDTO(documentsOpt);
+    }
+
+    public List<AbstractDocumentFormDTO> getDocumentsByYear(String year) {
+        Year years = Year.parse(year);
+        var documentsOpt = documentRepository.findAllByPublicationYear(years);
         return getDocumentsDTO(documentsOpt);
     }
 
