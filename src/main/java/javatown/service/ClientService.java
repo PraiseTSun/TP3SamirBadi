@@ -50,6 +50,11 @@ public class ClientService extends AbstractCommunService{
         return getDocumentsDTO(documentsOpt);
     }
 
+    public List<AbstractDocumentFormDTO> getDocumentsByEditor(String editor) {
+        var documentsOpt = documentRepository.findAllByEditor(editor);
+        return getDocumentsDTO(documentsOpt);
+    }
+
     private List<AbstractDocumentFormDTO> getDocumentsDTO(Optional<List<AbstractDocument>> documentsOpt){
         List<AbstractDocument> documents = handleOptDocuments(documentsOpt);
         List<AbstractDocumentFormDTO> documentsDTO = new ArrayList<>();
