@@ -32,5 +32,12 @@ public class ClientService extends AbstractCommunService{
         return new ClientFormDTO(client);
     }
 
-    
+    public ClientFormDTO getClientByPassword(ClientFormDTO clientForm) {
+        return getClientByPassword(clientForm.getFirstName(), clientForm.getLastName(), clientForm.getPassword());
+    }
+
+    public ClientFormDTO getClientByPassword(String firstName, String lastName, String password) {
+        Client client = findCLientWithLoansAndDebts(firstName, lastName, password);
+        return new ClientFormDTO(client);
+    }
 }
