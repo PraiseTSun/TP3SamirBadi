@@ -103,4 +103,17 @@ public class EmployeeService extends AbstractCommunService{
     private Debt createDebt(Loan loan, String dateOfReturn){
         return new Debt(loan.getClient(), dateOfReturn, loan.nbDaysLate(dateOfReturn));
     }
+
+    public DebtFormDTO payeDebt(String clientId, String debtId) {
+        long clientIndex = Long.parseLong(clientId);
+        long debtIndex = Long.parseLong(debtId);
+
+        Client client = findClientByIdWithDebts(clientIndex);
+        if(client == null) return null;
+        Debt debt = client.getDebtById(debtIndex);
+        if(debt == null) return null;
+        debtRepository.delete(debt);
+
+        return new DebtFormDTO(debt);
+    }
 }
