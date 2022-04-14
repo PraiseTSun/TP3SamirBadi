@@ -10,11 +10,13 @@ import javatown.repository.AdminRepository;
 import javatown.repository.ClientRepository;
 import javatown.repository.DebtRepository;
 import javatown.repository.LoanRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AdminService extends AbstractCommunService{
     private AdminRepository adminRepository;
 
