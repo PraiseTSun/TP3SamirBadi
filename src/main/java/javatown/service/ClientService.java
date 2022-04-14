@@ -25,4 +25,12 @@ public class ClientService extends AbstractCommunService{
         clientRepository.save(client);
         return new ClientFormDTO(client);
     }
+
+    public ClientFormDTO getClientById(String clientId) {
+        long id = Long.parseLong(clientId);
+        Client client = findCLientWithLoansAndDebts(id);
+        return new ClientFormDTO(client);
+    }
+
+    
 }
