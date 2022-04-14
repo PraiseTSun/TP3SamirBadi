@@ -79,4 +79,28 @@ public class EmployeeService extends AbstractCommunService{
 
         return loan;
     }
+
+    public DebtFormDTO returnDocument(String clientId, String loanId, String dateOfReturn) {
+        long clientIndex = Long.parseLong(clientId);
+        long loanIndex = Long.parseLong(loanId);
+        Debt debt = null;
+        Client client = findClientByIdWithLoans(clientIndex);
+        Loan loan = client.getLoanOfId(loanIndex);
+
+        if(loan == null) return null;
+        if(loan.isLate(dateOfReturn)) debt = createDebt(loan, dateOfReturn);
+
+        loanRepository.delete(loan);
+
+        if(debt != null) {
+            debtRepository.save(debt);
+            return new DebtFormDTO(debt);
+        }
+
+        return null;
+    }
+
+    private Debt createDebt(Loan loan, String dateOfReturn){
+        return new Debt(loan.getClient(), dateOfReturn, loan.nbDaysLate(dateOfReturn));
+    }
 }
