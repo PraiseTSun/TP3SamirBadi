@@ -1,11 +1,17 @@
 package javatown.service;
 
 import javatown.DTO.AdminFormDTO;
+import javatown.DTO.LoanFormDTO;
 import javatown.modele.Administrator;
+import javatown.modele.Loan;
 import javatown.repository.AdminRepository;
 import javatown.repository.ClientRepository;
 import javatown.repository.DebtRepository;
 import javatown.repository.LoanRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class AdminService extends AbstractCommunService{
     private AdminRepository adminRepository;
@@ -24,5 +30,20 @@ public class AdminService extends AbstractCommunService{
         return new AdminFormDTO(admin);
     }
 
-    
+    public List<LoanFormDTO> getLoansOfMonth(int month) {
+        var loansOpt = loanRepository.findAllByDateOfLoan(month);
+        List<Loan> loans = getListOfMonth(loansOpt);
+        List<LoanFormDTO> loansDTO = new ArrayList<>();
+        for (Loan loan : loans) {
+            loansDTO.add(new LoanFormDTO(loan));
+        }
+
+        return loansDTO;
+    }
+
+    private <T> List<T> getListOfMonth(Optional<List<T>> listOpt){
+        if(listOpt.isEmpty())
+            return new ArrayList<>();
+        return listOpt.get();
+    }
 }
