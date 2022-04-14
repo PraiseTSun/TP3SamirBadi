@@ -12,4 +12,6 @@ public interface DebtRepository extends JpaRepository<Debt, Long> {
     @Query(value = "SELECT p FROM Debt p " +
             "WHERE FUNCTION('MONTH', p.dateOfDebt) = :month")
     Optional<List<Debt>> findAllByDateOfDebt(@Param("month") Integer month);
+
+    boolean existsByClient_Id (Long clientId);
 }
