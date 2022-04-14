@@ -12,7 +12,8 @@ import java.util.Optional;
 public interface DocumentRepository extends JpaRepository<AbstractDocument, Long> {
     @Query(value = "SELECT p FROM AbstractDocument p " +
             "WHERE p.title LIKE %:title%")
-    Optional<List<AbstractDocument>> findByTitle(@Param("title") String title);
+    Optional<List<AbstractDocument>> findAllByTitle(@Param("title") String title);
     Optional<List<AbstractDocument>> findAllByAuthor(String author);
-
+    Optional<List<AbstractDocument>> findAllByEditor(String editor);
+    
 }
