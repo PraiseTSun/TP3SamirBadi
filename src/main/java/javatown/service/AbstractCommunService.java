@@ -30,4 +30,11 @@ public class AbstractCommunService {
             return null;
         return clientOpt.get();
     }
+
+    protected Client findClientByIdWithDebts(long clientId){
+        var clientOpt = clientRepository.findByIdWithDebts(clientId);
+        if(clientOpt.isEmpty())
+            return null;
+        return clientOpt.get();
+    }
 }
