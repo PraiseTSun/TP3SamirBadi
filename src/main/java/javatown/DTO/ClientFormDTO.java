@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class ClientFormDTO extends AbstractUserForm<Client> implements IFormDTO<Client>{
+public class ClientFormDTO extends AbstractUserForm implements IFormDTO<Client>{
     private static DateTimeFormatter DATETIMEFORMATTER = DateTimeFormatter.ofPattern("yyyy-mm-dd");
     private String resident;
     private List<LoanFormDTO> loans = new ArrayList<>();
