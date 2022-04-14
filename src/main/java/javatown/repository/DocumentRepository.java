@@ -17,5 +17,9 @@ public interface DocumentRepository extends JpaRepository<AbstractDocument, Long
     Optional<List<AbstractDocument>> findAllByEditor(String editor);
     Optional<List<AbstractDocument>> findAllByPublicationYear(Year year);
     Optional<List<AbstractDocument>> findAllByGenre(String genre);
+    @Query(value = "SELECT p FROM AbstractDocument p " +
+            "LEFT JOIN FETCH p.loans " +
+            "WHERE p.id = :documentId")
+    Optional<AbstractDocument> findByIdWithLoans(@Param("documentId") Long documentId);
 
 }
