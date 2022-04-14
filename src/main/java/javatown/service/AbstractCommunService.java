@@ -37,4 +37,11 @@ public class AbstractCommunService {
             return null;
         return clientOpt.get();
     }
+
+    protected Client findClientByPasswordWithDebts(String firstName, String lastName, String password){
+        var clientOpt = clientRepository.findByIdWithDebts(firstName, lastName, password);
+        if(clientOpt.isEmpty())
+            return null;
+        return clientOpt.get();
+    }
 }
