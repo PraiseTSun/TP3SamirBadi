@@ -42,6 +42,7 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         System.out.println(DVD2);
         System.out.println(clientService.getClientById(client1.getId()));
         System.out.println(clientService.getDocumentsByAuthor("Steven Lee"));
+        System.out.println(clientService.getDocumentsByEditor("Amon Amarth"));
 
     }
 }
