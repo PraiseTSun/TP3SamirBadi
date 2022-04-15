@@ -70,4 +70,11 @@ public class RootController {
         model.addAttribute("loans", clientForm.getLoans());
         return "clientloan";
     }
+
+    @GetMapping("/clientconnectdebt")
+    public String getClientConnectDebts(@ModelAttribute ClientFormDTO clientForm, Model model, RedirectAttributes redirectAttributes){
+        clientForm = new ClientFormDTO();
+        model.addAttribute("clientForm", clientForm);
+        return "clientconnectdebt";
+    }
 }
