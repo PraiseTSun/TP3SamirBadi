@@ -62,4 +62,12 @@ public class RootController {
         model.addAttribute("clientForm", clientForm);
         return "clientconnectloan";
     }
+
+    @PostMapping("/clientconnectloan")
+    public String clientConnectLoans(@ModelAttribute ClientFormDTO clientForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
+        logger.info("client:" + clientForm);
+        clientForm = clientService.getClientByPassword(clientForm);
+        model.addAttribute("loans", clientForm.getLoans());
+        return "clientloan";
+    }
 }
