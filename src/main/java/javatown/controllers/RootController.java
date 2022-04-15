@@ -108,11 +108,19 @@ public class RootController {
         redirectAttributes.addFlashAttribute("bookForm", bookForm);
         return "bookresult";
     }
-    
+
     @GetMapping("/cdcreate")
     public String getCdCreate(@ModelAttribute CDFormDTO cdForm, Model model, RedirectAttributes redirectAttributes){
         cdForm = new CDFormDTO();
         model.addAttribute("cdForm", cdForm);
         return "cdedit";
+    }
+
+    @PostMapping("/cdcreate")
+    public String cdPost(@ModelAttribute CDFormDTO cdForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
+        logger.info("cd:" + cdForm);
+        employeeService.createCD(cdForm.toCD());
+        redirectAttributes.addFlashAttribute("cdForm", cdForm);
+        return "cdresult";
     }
 }
