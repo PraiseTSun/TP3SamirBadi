@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Title</title>
+</head>
+<body>
+    <h1 th:text="${mainTitle}">Page index</h1>
+    <a th:href="@{'/client'}">Client</a>
+    <br>
+    <a th:href="@{'/employee'}">Employee</a>
+    <br>
+    <a th:href="@{'/admin'}">Administrator</a>
+</body>
+</html>
