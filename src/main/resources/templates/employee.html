@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 th:text="${employeeTitle}">Page</h1>
+    <a th:href="@{'/bookcreate'}">Add a new book</a>
+    <br>
+    <a th:href="@{'/cdcreate'}">Add a new CD</a>
+    <br>
+    <a th:href="@{'/dvdcreate'}">Add a new DVD</a>
+    <br>
+    <a th:href="@{'/loancreate'}">Loan a document</a>
+    <br>
+    <a th:href="@{'/clientconnectloan'}">Return a document</a>
+    <br>
+    <a th:href="@{'/clientconnectdebt'}">Pay a debt</a>
+    <br>
+    <a th:href="@{'/'}">Return</a>
+</body>
+</html>
