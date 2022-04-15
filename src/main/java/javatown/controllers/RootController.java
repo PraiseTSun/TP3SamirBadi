@@ -85,4 +85,10 @@ public class RootController {
         redirectAttributes.addFlashAttribute("clientForm", clientForm);
         return "clientdebt";
     }
+
+    @GetMapping("/employee")
+    public String getEmployee(Model model){
+        model.addAttribute("employeeTitle", "Employee Section");
+        return "employee";
+    }
 }
