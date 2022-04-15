@@ -1,5 +1,6 @@
 package javatown.controllers;
 
+import javatown.DTO.BookFormDTO;
 import javatown.DTO.ClientFormDTO;
 import javatown.service.AdminService;
 import javatown.service.ClientService;
@@ -90,5 +91,12 @@ public class RootController {
     public String getEmployee(Model model){
         model.addAttribute("employeeTitle", "Employee Section");
         return "employee";
+    }
+
+    @GetMapping("/bookcreate")
+    public String getBookCreate (@ModelAttribute BookFormDTO bookForm, Model model, RedirectAttributes redirectAttributes) {
+        bookForm = new BookFormDTO();
+        model.addAttribute("bookForm", bookForm);
+        return "bookedit";
     }
 }
