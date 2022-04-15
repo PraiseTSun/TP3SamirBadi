@@ -31,7 +31,7 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         var CD1 = employeeService.createCD("Viking", "Amon Amarth", "Amon Amarth", "2015", "Heavy Metal");
         var DVD1 = employeeService.createDVD("Avenger Test", "Steven Lee", "Marvel", "2017", "Action");
         var DVD2 = employeeService.createDVD("Avenger The end game", "Steven Lee", "Marvel", "2019", "Action");
-
+        employeeService.addExemplaires(book1.getId(), 1);
 
         System.out.println(client1);
         System.out.println(employee1);
