@@ -69,5 +69,7 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         System.out.println(clientService.getClientById(client1.getId()));
         System.out.println(adminService.getLoansOfMonth(2));
         System.out.println(adminService.getDebtsOfMonth(2));
+        System.out.println(clientService.getClientByPassword("Samir", "Badi", "PraiseTSun"));
+
     }
 }
