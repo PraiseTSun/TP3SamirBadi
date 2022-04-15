@@ -40,5 +40,7 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         System.out.println(CD1);
         System.out.println(DVD1);
         System.out.println(DVD2);
+        System.out.println(clientService.getClientById(client1.getId()));
+
     }
 }
