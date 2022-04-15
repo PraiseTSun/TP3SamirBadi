@@ -55,4 +55,11 @@ public class RootController {
         redirectAttributes.addFlashAttribute("clientForm", clientForm);
         return "clientresult";
     }
+
+    @GetMapping("/clientconnectloan")
+    public String getClientConnectLoans(@ModelAttribute ClientFormDTO clientForm, Model model, RedirectAttributes redirectAttributes){
+        clientForm = new ClientFormDTO();
+        model.addAttribute("clientForm", clientForm);
+        return "clientconnectloan";
+    }
 }
