@@ -1,5 +1,6 @@
 package javatown.controllers;
 
+import javatown.DTO.ClientFormDTO;
 import javatown.service.AdminService;
 import javatown.service.ClientService;
 import javatown.service.EmployeeService;
@@ -8,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class RootController {
@@ -34,5 +37,12 @@ public class RootController {
     public String getClient(Model model){
         model.addAttribute("clientTitle", "Client Section");
         return "client";
+    }
+
+    @GetMapping("/clientcreate")
+    public String getClientCreate(@ModelAttribute ClientFormDTO clientForm, Model model, RedirectAttributes redirectAttributes){
+        clientForm = new ClientFormDTO();
+        model.addAttribute("clientForm", clientForm);
+        return "clientedit";
     }
 }
