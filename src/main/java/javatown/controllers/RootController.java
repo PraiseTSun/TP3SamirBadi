@@ -152,4 +152,10 @@ public class RootController {
         redirectAttributes.addFlashAttribute("loanForm", loanFormDTO);
         return "loanresult";
     }
+
+    @GetMapping("/admin")
+    public String getAdmin(Model model){
+        model.addAttribute("adminTitle", "Administrator Section");
+        return "administrator";
+    }
 }
