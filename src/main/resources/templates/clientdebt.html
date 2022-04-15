@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Client Loans</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Client debts</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Fine</th>
+        </tr>
+<!--        <tr th:each="loan :${clientForm.loans}">-->
+<!--            <td th:text="loan.documentName"/>-->
+<!--            <td th:text="loan.dateOfReturn"/>-->
+<!--        </tr>-->
+    </table>
+    <a th:href="@{'/client'}">Return to client menu</a>
+</body>
+</html>
