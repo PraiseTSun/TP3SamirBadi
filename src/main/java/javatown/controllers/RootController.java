@@ -132,4 +132,12 @@ public class RootController {
         model.addAttribute("dvdForm", dvdForm);
         return "dvdedit";
     }
+
+    @PostMapping("/dvdcreate")
+    public String dvdPost(@ModelAttribute DVDFormDTO dvdForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
+        logger.info("dvd:" + dvdForm);
+        employeeService.createDVD(dvdForm.toDVD());
+        redirectAttributes.addFlashAttribute("dvdForm", dvdForm);
+        return "dvdresult";
+    }
 }
