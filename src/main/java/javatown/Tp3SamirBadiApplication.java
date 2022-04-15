@@ -45,6 +45,7 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         System.out.println(clientService.getDocumentsByEditor("Amon Amarth"));
         System.out.println(clientService.getDocumentsByYear("2001"));
         System.out.println(clientService.getDocumentsByGenre("Action"));
+        System.out.println(clientService.getDocumentsByTitle("iki"));
 
     }
 }
