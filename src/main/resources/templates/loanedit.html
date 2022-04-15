@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Create CD</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 th:text="'Create a loan'"/>
+<br>
+
+<form action="#" th:action="@{/loancreate}" th:object="${loanForm}" method="post">
+    <table border="1">
+        <tr>
+            <td><label>ClientId</label></td>
+            <td><input type="text" th:field="*{clientId}" /></td>
+        </tr>
+        <tr>
+            <td><label>DocumentId</label></td>
+            <td><input type="text" th:field="*{documentId}" /></td>
+        </tr>
+        <tr>
+            <td><label>Date Of Loan</label></td>
+            <td><input type="text" th:field="*{dateOfLoan}" /></td>
+        </tr>
+
+    </table>
+    <input type="submit" value="Sauve" />
+</form>
+
+
+<a th:href="@{'/employee'}">Cancel</a>
+</body>
+</html>
