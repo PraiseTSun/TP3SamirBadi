@@ -27,9 +27,18 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         var client1 = clientService.createClient("Samir", "Badi", "PraiseTSun", "Javatown");
         var employee1 = employeeService.createEmployee("Dave", "Smith", "test");
         var admin1 = adminService.createAdmin("James", "Dalton", "admin");
+        var book1 = employeeService.createBook("Atlas", "House", "Jhone Smith", "2001", 256, "GEO");
+        var CD1 = employeeService.createCD("Viking", "Amon Amarth", "Amon Amarth", "2015", "Heavy Metal");
+        var DVD1 = employeeService.createDVD("Avenger Test", "Steven Lee", "Marvel", "2017", "Action");
+        var DVD2 = employeeService.createDVD("Avenger The end game", "Steven Lee", "Marvel", "2019", "Action");
+
 
         System.out.println(client1);
         System.out.println(employee1);
         System.out.println(admin1);
+        System.out.println(book1);
+        System.out.println(CD1);
+        System.out.println(DVD1);
+        System.out.println(DVD2);
     }
 }
