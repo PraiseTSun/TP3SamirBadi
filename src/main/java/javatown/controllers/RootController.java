@@ -99,4 +99,12 @@ public class RootController {
         model.addAttribute("bookForm", bookForm);
         return "bookedit";
     }
+
+    @PostMapping("/bookcreate")
+    public String bookPost(@ModelAttribute BookFormDTO bookForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
+        logger.info("book:" + bookForm);
+        employeeService.createBook(bookForm.toModel());
+        redirectAttributes.addFlashAttribute("bookForm", bookForm);
+        return "bookresult";
+    }
 }
