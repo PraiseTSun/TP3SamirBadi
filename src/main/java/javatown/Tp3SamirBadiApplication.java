@@ -68,6 +68,6 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         employeeService.createLoan(client1.getId(), CD1.getId(), "2021-02-10");
         System.out.println(clientService.getClientById(client1.getId()));
         System.out.println(adminService.getLoansOfMonth(2));
-
+        System.out.println(adminService.getDebtsOfMonth(2));
     }
 }
