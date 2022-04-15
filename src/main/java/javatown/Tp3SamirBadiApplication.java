@@ -26,8 +26,10 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         var client1 = clientService.createClient("Samir", "Badi", "PraiseTSun", "Javatown");
         var employee1 = employeeService.createEmployee("Dave", "Smith", "test");
+        var admin1 = adminService.createAdmin("James", "Dalton", "admin");
 
         System.out.println(client1);
         System.out.println(employee1);
+        System.out.println(admin1);
     }
 }
