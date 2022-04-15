@@ -77,4 +77,12 @@ public class RootController {
         model.addAttribute("clientForm", clientForm);
         return "clientconnectdebt";
     }
+
+    @PostMapping("/clientconnectdebt")
+    public String clientConnectDebts(@ModelAttribute ClientFormDTO clientForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
+        logger.info("client:" + clientForm);
+        clientForm = clientService.getClientByPassword(clientForm);
+        redirectAttributes.addFlashAttribute("clientForm", clientForm);
+        return "clientdebt";
+    }
 }
