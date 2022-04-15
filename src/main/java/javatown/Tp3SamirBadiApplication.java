@@ -24,6 +24,8 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        
+        var client1 = clientService.createClient("Samir", "Badi", "PraiseTSun", "Javatown");
+
+        System.out.println(client1);
     }
 }
