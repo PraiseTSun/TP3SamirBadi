@@ -1,6 +1,7 @@
 package javatown.controllers;
 
 import javatown.DTO.BookFormDTO;
+import javatown.DTO.CDFormDTO;
 import javatown.DTO.ClientFormDTO;
 import javatown.service.AdminService;
 import javatown.service.ClientService;
@@ -106,5 +107,12 @@ public class RootController {
         employeeService.createBook(bookForm.toModel());
         redirectAttributes.addFlashAttribute("bookForm", bookForm);
         return "bookresult";
+    }
+    
+    @GetMapping("/cdcreate")
+    public String getCdCreate(@ModelAttribute CDFormDTO cdForm, Model model, RedirectAttributes redirectAttributes){
+        cdForm = new CDFormDTO();
+        model.addAttribute("cdForm", cdForm);
+        return "cdedit";
     }
 }
