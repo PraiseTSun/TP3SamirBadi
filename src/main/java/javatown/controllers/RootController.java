@@ -1,9 +1,6 @@
 package javatown.controllers;
 
-import javatown.DTO.BookFormDTO;
-import javatown.DTO.CDFormDTO;
-import javatown.DTO.ClientFormDTO;
-import javatown.DTO.DVDFormDTO;
+import javatown.DTO.*;
 import javatown.modele.DVD;
 import javatown.service.AdminService;
 import javatown.service.ClientService;
@@ -139,5 +136,12 @@ public class RootController {
         employeeService.createDVD(dvdForm.toDVD());
         redirectAttributes.addFlashAttribute("dvdForm", dvdForm);
         return "dvdresult";
+    }
+
+    @GetMapping("/loancreate")
+    public String getLoanCreate(@ModelAttribute CreateLoanFormDTO loanDTO, Model model, RedirectAttributes redirectAttributes){
+        loanDTO = new CreateLoanFormDTO();
+        model.addAttribute("loanForm", loanDTO);
+        return "loanedit";
     }
 }
