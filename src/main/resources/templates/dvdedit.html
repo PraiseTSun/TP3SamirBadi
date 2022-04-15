@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Create DVD</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <h1>Create a DVD</h1>
+  <br>
+
+  <form action="#" th:action="@{/dvdcreate}" th:object="${dvdForm}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <table border="1">
+      <tr>
+        <td><label>Titre</label></td>
+        <td><input type="text" th:field="*{title}" /></td>
+      </tr>
+      <tr>
+        <td><label>Auteur</label></td>
+        <td><input type="text" th:field="*{author}" /></td>
+      </tr>
+      <tr>
+        <td><label>Editeur</label></td>
+        <td><input type="text" th:field="*{editor}" /></td>
+      </tr>
+      <tr>
+          <td><label>Annee</label></td>
+          <td><input type="text" th:field="*{publicationYear}" /></td>
+      </tr>
+      <tr>
+        <td><label>Genre</label></td>
+        <td><input type="text" th:field="*{genre}" /></td>
+      </tr>
+
+    </table>
+    <input type="submit" value="Sauve" />
+  </form>
+
+
+  <a th:href="@{'/employee'}">Cancel</a>
+</body>
+</html>
