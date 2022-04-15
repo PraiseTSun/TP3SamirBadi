@@ -3,7 +3,9 @@ package javatown.service;
 import javatown.DTO.*;
 import javatown.modele.*;
 import javatown.repository.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmployeeService extends AbstractCommunService{
     private EmployeRepository employeRepository;
     private DocumentRepository documentRepository;
