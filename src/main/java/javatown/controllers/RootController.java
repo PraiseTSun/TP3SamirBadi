@@ -3,6 +3,8 @@ package javatown.controllers;
 import javatown.DTO.BookFormDTO;
 import javatown.DTO.CDFormDTO;
 import javatown.DTO.ClientFormDTO;
+import javatown.DTO.DVDFormDTO;
+import javatown.modele.DVD;
 import javatown.service.AdminService;
 import javatown.service.ClientService;
 import javatown.service.EmployeeService;
@@ -122,5 +124,12 @@ public class RootController {
         employeeService.createCD(cdForm.toCD());
         redirectAttributes.addFlashAttribute("cdForm", cdForm);
         return "cdresult";
+    }
+
+    @GetMapping("/dvdcreate")
+    public String getDvdCreate(@ModelAttribute DVDFormDTO dvdForm, Model model, RedirectAttributes redirectAttributes){
+        dvdForm = new DVDFormDTO(new DVD());
+        model.addAttribute("dvdForm", dvdForm);
+        return "dvdedit";
     }
 }
