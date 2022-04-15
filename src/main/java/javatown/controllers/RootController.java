@@ -29,4 +29,10 @@ public class RootController {
         model.addAttribute("mainTitle", "Users Sections");
         return "index";
     }
+
+    @GetMapping("/client")
+    public String getClient(Model model){
+        model.addAttribute("clientTitle", "Client Section");
+        return "client";
+    }
 }
