@@ -158,4 +158,10 @@ public class RootController {
         model.addAttribute("adminTitle", "Administrator Section");
         return "administrator";
     }
+
+    @GetMapping("/notimplemented")
+    public String getNotImplemented(Model model){
+        model.addAttribute("title", "Function is not implemented yet.");
+        return "notimplemented";
+    }
 }
