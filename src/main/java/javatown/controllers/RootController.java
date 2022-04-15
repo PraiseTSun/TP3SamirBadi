@@ -144,4 +144,12 @@ public class RootController {
         model.addAttribute("loanForm", loanDTO);
         return "loanedit";
     }
+
+    @PostMapping("/loancreate")
+    public String loanPost(@ModelAttribute CreateLoanFormDTO loanDTO, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
+        logger.info("loan:" + loanDTO);
+        LoanFormDTO loanFormDTO = employeeService.createLoan(loanDTO);
+        redirectAttributes.addFlashAttribute("loanForm", loanFormDTO);
+        return "loanresult";
+    }
 }
