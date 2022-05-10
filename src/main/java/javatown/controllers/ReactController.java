@@ -87,4 +87,10 @@ public class ReactController {
     ){
         return employeService.createDVD(title, author, editor, year, genre);
     }
+
+    @GetMapping("/loans/{id}")
+    public List<LoanFormDTO> getLoansOfMonth(@PathVariable int id){
+        return adminService.getLoansOfMonth(id);
+    }
+
 }
