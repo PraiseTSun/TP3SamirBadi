@@ -107,4 +107,9 @@ public class ReactController {
     public List<ClientFormDTO> getClients(){
         return employeService.getClients();
     }
+
+    @GetMapping("/client_{id}")
+    public ClientFormDTO getClient(@PathVariable String id ){
+        return clientService.getClientById(id);
+    }
 }
