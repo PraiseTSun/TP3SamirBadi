@@ -11,21 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EmployeeService extends AbstractCommunService{
+public class EmployeService extends AbstractCommunService{
     private EmployeRepository employeRepository;
     private DocumentRepository documentRepository;
 
-    public EmployeeService(ClientRepository clientRepository, LoanRepository loanRepository, DebtRepository debtRepository, EmployeRepository employeRepository, DocumentRepository documentRepository) {
+    public EmployeService(ClientRepository clientRepository, LoanRepository loanRepository, DebtRepository debtRepository, EmployeRepository employeRepository, DocumentRepository documentRepository) {
         super(clientRepository, loanRepository, debtRepository);
         this.employeRepository = employeRepository;
         this.documentRepository = documentRepository;
     }
 
-    public EmployeeFormDTO createEmployee(String firstName, String lastName, String password) {
-        return createEmployee(new Employee(firstName, lastName, password));
+    public EmployeeFormDTO createEmploye(String firstName, String lastName, String password) {
+        return createEmploye(new Employee(firstName, lastName, password));
     }
 
-    public EmployeeFormDTO createEmployee(Employee employee){
+    public EmployeeFormDTO createEmploye(Employee employee){
         employeRepository.save(employee);
         return new EmployeeFormDTO(employee);
     }
@@ -57,17 +57,12 @@ public class EmployeeService extends AbstractCommunService{
         return new DVDFormDTO(dvd);
     }
 
-    public LoanFormDTO createLoan(CreateLoanFormDTO dto) {
-        return createLoan(dto.getClientId(), dto.getDocumentId(), dto.getDateOfLoan());
+    public LoanFormDTO createLoan(CreateLoanFormDTO loanDTO) {
+        return createLoan(loanDTO.getClientId(), loanDTO.getDocumentId());
     }
 
     public LoanFormDTO createLoan(String clientId, String documentId){
         return createLoan(clientId, documentId, getDate());
-    }
-
-    private String getDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.now().format(formatter);
     }
 
     public LoanFormDTO createLoan(String clientId, String documentId, String dateOfLoan) {
@@ -119,6 +114,11 @@ public class EmployeeService extends AbstractCommunService{
         return null;
     }
 
+    private String getDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.now().format(formatter);
+    }
+
     private Debt createDebt(Loan loan, String dateOfReturn){
         return new Debt(loan.getClient(), dateOfReturn, loan.nbDaysLate(dateOfReturn));
     }
@@ -150,13 +150,13 @@ public class EmployeeService extends AbstractCommunService{
         var clientsOpt = clientRepository.findAll();
         List<ClientFormDTO> clients = new ArrayList<>();
         clientsOpt.forEach( client ->
-                clients.add(new ClientFormDTO(
-                        Long.toString(client.getId()),
-                        client.getFirstName(),
-                        client.getLastName(),
-                        client.getPassword(),
-                        client.getResident()
-                ))
+            clients.add(new ClientFormDTO(
+                    Long.toString(client.getId()),
+                    client.getFirstName(),
+                    client.getLastName(),
+                    client.getPassword(),
+                    client.getResident()
+            ))
         );
 
         return clients;

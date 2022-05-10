@@ -6,6 +6,7 @@ import javatown.repository.ClientRepository;
 import javatown.repository.DebtRepository;
 import javatown.repository.DocumentRepository;
 import javatown.repository.LoanRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.Year;
@@ -23,7 +24,7 @@ public class ClientService extends AbstractCommunService{
     }
 
     public ClientFormDTO createClient(String firstName, String lastName, String password, String resident) {
-        return createClient(new Client(firstName, lastName, password, resident));
+       return createClient(new Client(firstName, lastName, password, resident));
     }
 
     public ClientFormDTO createClient(Client client) {
@@ -68,9 +69,15 @@ public class ClientService extends AbstractCommunService{
     }
 
     public List<AbstractDocumentFormDTO> getDocumentsByTitle(String title) {
-        var documentsOpt = documentRepository.findAllByTitle(title);
+        var documentsOpt = documentRepository.findByTitle(title);
         return getDocumentsDTO(documentsOpt);
     }
+
+    public List<AbstractDocumentFormDTO> getDocuments() {
+        var documentsOpt = getDocumentsDTO(documentRepository.findAll());
+        return documentsOpt;
+    }
+
 
     private List<AbstractDocumentFormDTO> getDocumentsDTO(Optional<List<AbstractDocument>> documentsOpt){
         List<AbstractDocument> documents = handleOptDocuments(documentsOpt);
@@ -93,10 +100,5 @@ public class ClientService extends AbstractCommunService{
         if(documentsOpt.isEmpty()) return null;
         List<AbstractDocument> documents = documentsOpt.get();
         return documents;
-    }
-
-    public List<AbstractDocumentFormDTO> getDocuments() {
-        var documentsOpt = getDocumentsDTO(documentRepository.findAll());
-        return documentsOpt;
     }
 }

@@ -3,22 +3,22 @@ package javatown.controllers;
 import javatown.DTO.*;
 import javatown.service.AdminService;
 import javatown.service.ClientService;
-import javatown.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import javatown.service.EmployeService;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 @RequestMapping("/react")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class ReactController {
     private AdminService adminService;
     private ClientService clientService;
-    private EmployeeService employeService;
+    private EmployeService employeService;
 
-    public ReactController(AdminService adminService, ClientService clientService, EmployeeService employeeService) {
+    public ReactController(AdminService adminService, ClientService clientService, EmployeService employeService) {
         this.adminService = adminService;
         this.clientService = clientService;
         this.employeService = employeService;
@@ -142,7 +142,7 @@ public class ReactController {
             @PathVariable String firstName,
             @PathVariable String lastName,
             @PathVariable String password){
-        return employeService.createEmployee(firstName, lastName, password);
+        return employeService.createEmploye(firstName, lastName, password);
     }
 
     @GetMapping("/create_admin_{firstName}_{lastName}_{password}")

@@ -1,11 +1,9 @@
 package javatown.DTO;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-public abstract class AbstractUserForm {
+public abstract class AbstractUserForm<T> {
     protected String id;
     protected String firstName;
     protected String lastName;
@@ -16,5 +14,8 @@ public abstract class AbstractUserForm {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+    }
+
+    public AbstractUserForm() {
     }
 }

@@ -24,4 +24,20 @@ public abstract class AbstractUser {
         this.lastName = lastName;
         this.password = password;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

@@ -4,7 +4,7 @@ import javatown.DTO.*;
 import javatown.modele.DVD;
 import javatown.service.AdminService;
 import javatown.service.ClientService;
-import javatown.service.EmployeeService;
+import javatown.service.EmployeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,12 +20,12 @@ public class RootController {
     Logger logger = LoggerFactory.getLogger(RootController.class);
 
     private ClientService clientService;
-    private EmployeeService employeeService;
+    private EmployeService employeService;
     private AdminService adminService;
 
-    public RootController(ClientService clientService, EmployeeService employeeService, AdminService adminService) {
+    public RootController(ClientService clientService, EmployeService employeService, AdminService adminService) {
         this.clientService = clientService;
-        this.employeeService = employeeService;
+        this.employeService = employeService;
         this.adminService = adminService;
     }
 
@@ -103,7 +103,7 @@ public class RootController {
     @PostMapping("/bookcreate")
     public String bookPost(@ModelAttribute BookFormDTO bookForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
         logger.info("book:" + bookForm);
-        employeeService.createBook(bookForm.toModel());
+        employeService.createBook(bookForm.toModel());
         redirectAttributes.addFlashAttribute("bookForm", bookForm);
         return "bookresult";
     }
@@ -118,7 +118,7 @@ public class RootController {
     @PostMapping("/cdcreate")
     public String cdPost(@ModelAttribute CDFormDTO cdForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
         logger.info("cd:" + cdForm);
-        employeeService.createCD(cdForm.toCD());
+        employeService.createCD(cdForm.toCD());
         redirectAttributes.addFlashAttribute("cdForm", cdForm);
         return "cdresult";
     }
@@ -133,7 +133,7 @@ public class RootController {
     @PostMapping("/dvdcreate")
     public String dvdPost(@ModelAttribute DVDFormDTO dvdForm, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
         logger.info("dvd:" + dvdForm);
-        employeeService.createDVD(dvdForm.toDVD());
+        employeService.createDVD(dvdForm.toDVD());
         redirectAttributes.addFlashAttribute("dvdForm", dvdForm);
         return "dvdresult";
     }
@@ -148,7 +148,7 @@ public class RootController {
     @PostMapping("/loancreate")
     public String loanPost(@ModelAttribute CreateLoanFormDTO loanDTO, Model model, BindingResult errors, RedirectAttributes redirectAttributes){
         logger.info("loan:" + loanDTO);
-        LoanFormDTO loanFormDTO = employeeService.createLoan(loanDTO);
+        LoanFormDTO loanFormDTO = employeService.createLoan(loanDTO);
         redirectAttributes.addFlashAttribute("loanForm", loanFormDTO);
         return "loanresult";
     }

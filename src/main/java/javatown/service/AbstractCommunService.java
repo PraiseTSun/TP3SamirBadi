@@ -1,11 +1,20 @@
 package javatown.service;
 
-import javatown.modele.Client;
+import javatown.DTO.AbstractDocumentFormDTO;
+import javatown.DTO.BookFormDTO;
+import javatown.DTO.CDFormDTO;
+import javatown.DTO.DVDFormDTO;
+import javatown.modele.*;
 import javatown.repository.ClientRepository;
 import javatown.repository.DebtRepository;
 import javatown.repository.LoanRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class AbstractCommunService {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public abstract class AbstractCommunService {
     protected ClientRepository clientRepository;
     protected LoanRepository loanRepository;
     protected DebtRepository debtRepository;
@@ -40,7 +49,6 @@ public class AbstractCommunService {
             return null;
         return clientOpt.get();
     }
-
 
     protected Client findClientByPasswordWithLoans(String firstName, String lastName, String password){
         var clientOpt = clientRepository.findByIdWithLoans(firstName, lastName, password);

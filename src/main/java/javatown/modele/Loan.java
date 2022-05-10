@@ -68,6 +68,7 @@ public class Loan {
         LocalDate from = this.dateOfReturn;
         LocalDate to = LocalDate.parse(dateOfReturn);
         Period period = Period.between(from, to);
-        return period.getDays();
+        int late = period.getYears() * 365 + period.getMonths() * 30 + period.getDays();
+        return late;
     }
 }
