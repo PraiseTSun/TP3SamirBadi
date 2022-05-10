@@ -131,4 +131,9 @@ public class ReactController {
     public DebtFormDTO returnDocument(@PathVariable String client, @PathVariable String doc){
         return employeService.returnDocument(client, doc);
     }
+
+    @GetMapping("/pay/{client}_{debt}")
+    public DebtFormDTO payDebt(@PathVariable String client, @PathVariable String debt){
+        return employeService.payeDebt(client, debt);
+    }
 }
