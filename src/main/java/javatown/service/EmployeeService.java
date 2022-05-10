@@ -5,6 +5,9 @@ import javatown.modele.*;
 import javatown.repository.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Component
 public class EmployeeService extends AbstractCommunService{
     private EmployeRepository employeRepository;
@@ -55,6 +58,16 @@ public class EmployeeService extends AbstractCommunService{
     public LoanFormDTO createLoan(CreateLoanFormDTO dto) {
         return createLoan(dto.getClientId(), dto.getDocumentId(), dto.getDateOfLoan());
     }
+
+    public LoanFormDTO createLoan(String clientId, String documentId){
+        return createLoan(clientId, documentId, getDate());
+    }
+
+    private String getDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.now().format(formatter);
+    }
+
     public LoanFormDTO createLoan(String clientId, String documentId, String dateOfLoan) {
         long documentIndex = Long.parseLong(documentId);
         long clientIndex = Long.parseLong(clientId);

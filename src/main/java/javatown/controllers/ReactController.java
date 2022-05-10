@@ -93,4 +93,8 @@ public class ReactController {
         return adminService.getLoansOfMonth(id);
     }
 
+    @GetMapping("/loan/{client}_{id}")
+    public LoanFormDTO setLoan(@PathVariable String client, @PathVariable String id){
+        return employeService.createLoan(client, id);
+    }
 }
