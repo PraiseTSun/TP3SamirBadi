@@ -53,4 +53,16 @@ public class ReactController {
     public List<AbstractDocumentFormDTO> getDocumentsByYear(@PathVariable String value){
         return clientService.getDocumentsByYear(value);
     }
+
+    @GetMapping("/create_book_{title}_{author}_{editor}_{genre}_{year}_{page}")
+    public AbstractDocumentFormDTO createBook(
+            @PathVariable String title,
+            @PathVariable String author,
+            @PathVariable String editor,
+            @PathVariable String genre,
+            @PathVariable String year,
+            @PathVariable Integer page
+    ){
+        return employeService.createBook(title, author, editor, year, page, genre);
+    }
 }
