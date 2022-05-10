@@ -33,4 +33,9 @@ public class ReactController {
     public List<AbstractDocumentFormDTO> getDocumentsByName(@PathVariable String value){
         return clientService.getDocumentsByTitle(value);
     }
+
+    @GetMapping("/documents_author_{value}")
+    public List<AbstractDocumentFormDTO> getDocumentsByAuthor(@PathVariable String value){
+        return clientService.getDocumentsByAuthor(value);
+    }
 }
