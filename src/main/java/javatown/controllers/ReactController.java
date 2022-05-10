@@ -65,4 +65,15 @@ public class ReactController {
     ){
         return employeService.createBook(title, author, editor, year, page, genre);
     }
+
+    @GetMapping("/create_cd_{title}_{author}_{editor}_{genre}_{year}")
+    public AbstractDocumentFormDTO createCD(
+            @PathVariable String title,
+            @PathVariable String author,
+            @PathVariable String editor,
+            @PathVariable String genre,
+            @PathVariable String year
+    ){
+        return employeService.createCD(title, author, editor, year, genre);
+    }
 }
