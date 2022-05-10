@@ -76,4 +76,15 @@ public class ReactController {
     ){
         return employeService.createCD(title, author, editor, year, genre);
     }
+
+    @GetMapping("/create_dvd_{title}_{author}_{editor}_{genre}_{year}")
+    public AbstractDocumentFormDTO createDVD(
+            @PathVariable String title,
+            @PathVariable String author,
+            @PathVariable String editor,
+            @PathVariable String genre,
+            @PathVariable String year
+    ){
+        return employeService.createDVD(title, author, editor, year, genre);
+    }
 }
