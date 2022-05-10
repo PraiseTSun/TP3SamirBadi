@@ -112,4 +112,9 @@ public class ReactController {
     public ClientFormDTO getClient(@PathVariable String id ){
         return clientService.getClientById(id);
     }
+
+    @GetMapping("/client/{firstName}_{lastName}_{password}")
+    public ClientFormDTO getClient(@PathVariable String firstName, @PathVariable String lastName, @PathVariable String password){
+        return clientService.getClientByPassword(firstName,lastName, password);
+    }
 }
