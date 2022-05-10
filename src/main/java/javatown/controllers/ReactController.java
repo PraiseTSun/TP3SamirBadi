@@ -28,4 +28,9 @@ public class ReactController {
     public List<AbstractDocumentFormDTO> getDocuments(){
         return clientService.getDocuments();
     }
+
+    @GetMapping("/documents_title_{value}")
+    public List<AbstractDocumentFormDTO> getDocumentsByName(@PathVariable String value){
+        return clientService.getDocumentsByTitle(value);
+    }
 }
