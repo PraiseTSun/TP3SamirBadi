@@ -24,4 +24,8 @@ public class ReactController {
         this.employeService = employeService;
     }
 
+    @GetMapping("/documents")
+    public List<AbstractDocumentFormDTO> getDocuments(){
+        return clientService.getDocuments();
+    }
 }
