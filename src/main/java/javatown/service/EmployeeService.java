@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class EmployeeService extends AbstractCommunService{
@@ -140,5 +142,21 @@ public class EmployeeService extends AbstractCommunService{
         AbstractDocument document = documentOpt.get();
         document.addExempliares(nb);
         documentRepository.save(document);
+    }
+
+    public List<ClientFormDTO> getClients() {
+        var clientsOpt = clientRepository.findAll();
+        List<ClientFormDTO> clients = new ArrayList<>();
+        clientsOpt.forEach( client ->
+                clients.add(new ClientFormDTO(
+                        Long.toString(client.getId()),
+                        client.getFirstName(),
+                        client.getLastName(),
+                        client.getPassword(),
+                        client.getResident()
+                ))
+        );
+
+        return clients;
     }
 }

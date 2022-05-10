@@ -103,4 +103,8 @@ public class ReactController {
         return adminService.getDebtsOfMonth(id);
     }
 
+    @GetMapping("/clients")
+    public List<ClientFormDTO> getClients(){
+        return employeService.getClients();
+    }
 }
