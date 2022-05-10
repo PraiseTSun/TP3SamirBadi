@@ -136,4 +136,12 @@ public class ReactController {
     public DebtFormDTO payDebt(@PathVariable String client, @PathVariable String debt){
         return employeService.payeDebt(client, debt);
     }
+
+    @GetMapping("/create_employe_{firstName}_{lastName}_{password}")
+    public EmployeeFormDTO createEmploye(
+            @PathVariable String firstName,
+            @PathVariable String lastName,
+            @PathVariable String password){
+        return employeService.createEmployee(firstName, lastName, password);
+    }
 }
