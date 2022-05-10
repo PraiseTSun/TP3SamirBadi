@@ -117,4 +117,13 @@ public class ReactController {
     public ClientFormDTO getClient(@PathVariable String firstName, @PathVariable String lastName, @PathVariable String password){
         return clientService.getClientByPassword(firstName,lastName, password);
     }
+
+    @GetMapping("/create_client_{firstName}_{lastName}_{password}_{resident}")
+    public ClientFormDTO createClient(
+            @PathVariable String firstName,
+            @PathVariable String lastName,
+            @PathVariable String password,
+            @PathVariable String resident){
+        return clientService.createClient(firstName,lastName, password, resident);
+    }
 }
