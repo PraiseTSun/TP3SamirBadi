@@ -48,4 +48,9 @@ public class ReactController {
     public List<AbstractDocumentFormDTO> getDocumentsByGenre(@PathVariable String value){
         return clientService.getDocumentsByGenre(value);
     }
+
+    @GetMapping("/documents_year_{value}")
+    public List<AbstractDocumentFormDTO> getDocumentsByYear(@PathVariable String value){
+        return clientService.getDocumentsByYear(value);
+    }
 }
