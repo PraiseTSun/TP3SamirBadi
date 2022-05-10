@@ -21,5 +21,4 @@ public interface DocumentRepository extends JpaRepository<AbstractDocument, Long
             "LEFT JOIN FETCH p.loans " +
             "WHERE p.id = :documentId")
     Optional<AbstractDocument> findByIdWithLoans(@Param("documentId") Long documentId);
-
 }

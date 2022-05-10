@@ -74,8 +74,13 @@ public class ClientService extends AbstractCommunService{
 
     private List<AbstractDocumentFormDTO> getDocumentsDTO(Optional<List<AbstractDocument>> documentsOpt){
         List<AbstractDocument> documents = handleOptDocuments(documentsOpt);
+        return getDocumentsDTO(documents);
+    }
+
+    private List<AbstractDocumentFormDTO> getDocumentsDTO(List<AbstractDocument> documentsOpt){
         List<AbstractDocumentFormDTO> documentsDTO = new ArrayList<>();
-        for (AbstractDocument document: documents) {
+
+        for (AbstractDocument document: documentsOpt) {
             if(document.getClass() == Book.class) documentsDTO.add(new BookFormDTO((Book) document));
             else if(document.getClass() == CD.class) documentsDTO.add(new CDFormDTO((CD) document));
             else if(document.getClass() == DVD.class) documentsDTO.add(new DVDFormDTO((DVD) document));
@@ -88,5 +93,10 @@ public class ClientService extends AbstractCommunService{
         if(documentsOpt.isEmpty()) return null;
         List<AbstractDocument> documents = documentsOpt.get();
         return documents;
+    }
+
+    public List<AbstractDocumentFormDTO> getDocuments() {
+        var documentsOpt = getDocumentsDTO(documentRepository.findAll());
+        return documentsOpt;
     }
 }
