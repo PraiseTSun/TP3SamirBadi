@@ -126,4 +126,9 @@ public class ReactController {
             @PathVariable String resident){
         return clientService.createClient(firstName,lastName, password, resident);
     }
+
+    @GetMapping("/return/{client}_{doc}")
+    public DebtFormDTO returnDocument(@PathVariable String client, @PathVariable String doc){
+        return employeService.returnDocument(client, doc);
+    }
 }

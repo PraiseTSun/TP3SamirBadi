@@ -57,9 +57,9 @@ public class Tp3SamirBadiApplication implements CommandLineRunner {
         System.out.println(clientService.getClientById(client1.getId()));
         var loan3 = employeeService.createLoan(client1.getId(), DVD2.getId(), "2021-02-16");
         System.out.println(clientService.getClientById(client1.getId()));
-        var debt1 = employeeService.returnDocument(client1.getId(), loan2.getId(), "2021-02-28");
+        var debt1 = employeeService.returnDocument(client1.getId(), loan2.getId());
         System.out.println(clientService.getClientById(client1.getId()));
-        employeeService.returnDocument(client1.getId(), loan1.getId(), "2021-02-18");
+        employeeService.returnDocument(client1.getId(), loan1.getId());
         System.out.println(clientService.getClientById(client1.getId()));
         employeeService.createLoan(client1.getId(), CD1.getId(), "2021-02-10");
         System.out.println(clientService.getClientById(client1.getId()));

@@ -97,12 +97,14 @@ public class EmployeeService extends AbstractCommunService{
         return loan;
     }
 
-    public DebtFormDTO returnDocument(String clientId, String loanId, String dateOfReturn) {
+    public DebtFormDTO returnDocument(String clientId, String loanId) {
         long clientIndex = Long.parseLong(clientId);
         long loanIndex = Long.parseLong(loanId);
         Debt debt = null;
         Client client = findClientByIdWithLoans(clientIndex);
         Loan loan = client.getLoanOfId(loanIndex);
+
+        String dateOfReturn = getDate();
 
         if(loan == null) return null;
         if(loan.isLate(dateOfReturn)) debt = createDebt(loan, dateOfReturn);
