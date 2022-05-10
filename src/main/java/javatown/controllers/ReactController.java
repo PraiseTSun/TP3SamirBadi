@@ -144,4 +144,12 @@ public class ReactController {
             @PathVariable String password){
         return employeService.createEmployee(firstName, lastName, password);
     }
+
+    @GetMapping("/create_admin_{firstName}_{lastName}_{password}")
+    public AdminFormDTO createAdmin(
+            @PathVariable String firstName,
+            @PathVariable String lastName,
+            @PathVariable String password){
+        return adminService.createAdmin(firstName, lastName, password);
+    }
 }
